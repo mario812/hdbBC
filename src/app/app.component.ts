@@ -7,6 +7,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { computedAsync } from 'ngxtension/computed-async';
 
 
+
 @Component({
   standalone: true,
   imports: [RouterModule, HdWalletMultiButtonComponent],
@@ -15,13 +16,19 @@ import { computedAsync } from 'ngxtension/computed-async';
     <h1 class="text-5xl text-center mb-4">MI WALLET</h1>
     <div class="flex justify-center">
       <hd-wallet-multi-button> </hd-wallet-multi-button>
+      <br>
     </div>
 
     @if (account()) {
-      <div class="absolute top-4 left-4 flex justify-center items-center gap-2">
-        <img [src] = "account()?.info?.image" class = "w-8 h-8" />
-        <p class="text x-l"> {{account()?.balance}}</p>
-      </div>
+      {{accountsol()?.balance}}
+      @for (item of account(); track $index) {
+        <div class="flex justify-center">
+          <br>
+          <img class="w-24 h-24" src="{{item.info.image}}">
+          <p class="text x-l"> {{item.balance}}</p>
+        </div>
+      }
+      <br>
     }
   </header>`,
 })
@@ -34,4 +41,11 @@ export class AppComponent {
     () => this.shyftApiService.getAccount(this._publicKey()?.toBase58()),
     { requireSync: true },
   );
+
+  readonly accountsol = computedAsync(
+    () => this.shyftApiService.getAccountSolBalance(this._publicKey()?.toBase58()),
+    { requireSync: true },
+  );
+  
+  
 }
