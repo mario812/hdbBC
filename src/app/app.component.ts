@@ -105,42 +105,7 @@ th, td {
 
 
   
-  <!-- <header class="py-8 relative">
-    <h1 class="text-5xl text-center mb-4">MI WALLET</h1>
-    <div class="flex justify-center">
-      <hd-wallet-multi-button> </hd-wallet-multi-button>
-      <br />
-    </div>
-
-    @if (account()) {
-      <div class="display: flex flex-direction: column align-items: center margin: 5px">
-      <img class= "w-24 h-24" src="./assets/Solana_logo.png" />
-        {{ accountsol()?.balance }}
-      </div>
-
-      @for (item of account(); track $index) {
-        <div class=>
-         
-          <div
-            class="display: flex flex-direction: column align-items: center margin: 5px"
-          >
-            <img class="w-24 h-24" src="{{ item.info.image }}" />
-            <p>{{ item.balance }}</p>
-          </div>
-        </div>
-      }
-    }
-    
-    @for (item of transacciones(); track $index) {
   
-         
-          <div
-            class="display: flex flex-direction: column align-items: center margin: 5px"
-          >
-            <p>{{item.timestamp}}</p>
-          </div>
-
-    } -->
   `
 })
 export class AppComponent {
