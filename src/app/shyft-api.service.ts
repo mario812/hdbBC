@@ -18,7 +18,9 @@ export class ShyftApiService {
         url.searchParams.set('wallet', publicKey);
         
         return this._httpClient.get<{
-            result: [{balance: number; info: {image: string}}];
+            result: [{
+[x: string]: any;balance: number; info: {image: string}
+}];
         }>(url.toString(), {headers: this._header}).
         pipe(map((response) => response.result)); 
     }
@@ -35,6 +37,23 @@ export class ShyftApiService {
         return this._httpClient.get<{
             result: {balance: number;};
         }>(url.toString(), {headers: this._header}).
+        pipe(map((response) => response.result)); 
+    }
+
+    getTransactions(publicKey: string | undefined | null) {
+        if (!publicKey) {
+            return of(null);
+        }    
+
+        const url = new URL('https://api.shyft.to/sol/v1/transaction/history');
+        url.searchParams.set('network', 'mainnet-beta');
+        url.searchParams.set('account', publicKey);
+        url.searchParams.set('tx_number', "5");
+        url.searchParams.set('tx_raw', "true");
+
+        return this._httpClient.get<{
+            result: { status: string; type: string; timestamp: string }[] }>(
+                url.toString(), {headers: this._header}).
         pipe(map((response) => response.result)); 
     }
 }
