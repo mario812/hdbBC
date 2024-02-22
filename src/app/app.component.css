@@ -1,0 +1,36 @@
+
+  .container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+}
+
+.header button {
+  margin: 0 auto;
+}
+
+.balance-table, .history-table {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+th, td {
+  padding: 10px;
+}
+.balance-table h2 {
+  text-align: center;
+}
+.history-table h2 {
+  text-align: center;
+}
